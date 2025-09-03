@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+@theme{
+  --color-green:oklch(0.6617 0.223874 142.6694); /*main green color*/
+}
+
+.footer-subscribe {
+    border: 1px solid #E6E6E6;
+  }
+  
+  .social-icon {
+    @apply w-10 h-10 rounded-full flex items-center justify-center;
+  }
+  
+  .social-icon:hover {
+    @apply bg-[#00B207];
+  }
+  .footer {
+    flex-shrink: 0;
+  }
