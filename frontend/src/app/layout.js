@@ -1,6 +1,7 @@
 import "./globals.css";
 import { Poppins } from 'next/font/google';
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export const poppins = Poppins({
   weight: ['400', '500', '600', '700'],
@@ -23,7 +24,7 @@ export default function RootLayout({ children }) {
           <main className="flex-grow">
             {children} 
           </main>
-          
+          <Footer/>
         </div>
       </body>
     </html>
