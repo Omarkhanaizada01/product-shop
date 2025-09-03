@@ -4,6 +4,7 @@ import FeaturesSection from "@/components/sections/FeaturesSection";
 import PopularCategories from "@/components/sections/PopularCategories";
 import PopularProducts from "@/components/sections/PopularProducts";
 import BannerSection from "@/components/sections/BannerSection";
+import HotDeals from "@/components/sections/HotDeals";
 
 
 export default function Home() {
@@ -14,6 +15,7 @@ export default function Home() {
       <PopularCategories />
       <PopularProducts />
       <BannerSection />
+      <HotDeals />
 
     </>
   );
