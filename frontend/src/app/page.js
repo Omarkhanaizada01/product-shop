@@ -6,6 +6,7 @@ import PopularProducts from "@/components/sections/PopularProducts";
 import BannerSection from "@/components/sections/BannerSection";
 import HotDeals from "@/components/sections/HotDeals";
 import DiscountBannerSection from "@/components/sections/DiscountBannerSection";
+import FeaturedProductsSection from "@/components/sections/FeaturedProductsSection";
 
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
       <BannerSection />
       <HotDeals />
       <DiscountBannerSection />
+      <FeaturedProductsSection />
 
     </>
   );
