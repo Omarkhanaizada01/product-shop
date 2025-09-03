@@ -9,6 +9,8 @@ import DiscountBannerSection from "@/components/sections/DiscountBannerSection";
 import FeaturedProductsSection from "@/components/sections/FeaturedProductsSection";
 import LatestNews from "@/components/sections/LatestNews";
 import ClientTestimonials from "@/components/sections/ClientTestimonials";
+import CompanyLogo from "@/components/sections/CompanyLogo";
+import FollowUs from "@/components/sections/FollowUs";
 
 
 export default function Home() {
@@ -24,6 +26,8 @@ export default function Home() {
       <FeaturedProductsSection />
       <LatestNews />
       <ClientTestimonials />
+      <CompanyLogo />
+      <FollowUs />
 
     </>
   );
