@@ -2,7 +2,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import ArrowButton from '@/components/ui/ArrowButton';
+import ArrowButton from "../ui/ArrowButton";
 
 export default function Hero() {
   return (

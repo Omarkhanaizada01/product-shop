@@ -19,7 +19,7 @@ const ProductCard = ({
   const [isHovered, setIsHovered] = useState(false);
 
   // Конфиги размеров
-  const sizes = {
+  const sizesConfig = {
     "5n": {
       card: "w-full max-w-[264px] h-[327px]",
       image: "w-full h-[240px] relative",
@@ -40,7 +40,7 @@ const ProductCard = ({
     },
   };
 
-  const currentSize = sizes[size];
+  const currentSize = sizesConfig[size];
 
   const tagConfig = {
     sale: { bg: "bg-[#EA4B48]", text: `${salePercent}% Sale`, width: "w-[72px]" },
@@ -72,7 +72,13 @@ const ProductCard = ({
 
       {/* Изображение */}
       <div className={currentSize.image}>
-        <Image src={product.image} alt={product.name} fill className="object-contain" />
+        <Image
+          src={product.image}
+          alt={product.name}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="object-contain"
+        />
       </div>
 
       {/* Информация */}
@@ -94,13 +100,14 @@ const ProductCard = ({
               )}
             </div>
             <div className="relative w-[60px] h-[12px]">
-  <Image
-    src="/images/icons/rating.svg"
-    alt="Rating"
-    fill
-    className="object-contain"
-  />
-</div>
+              <Image
+                src="/images/icons/rating.svg"
+                alt="Rating"
+                fill
+                sizes="60px"
+                className="object-contain"
+              />
+            </div>
           </div>
         </div>
 
@@ -125,19 +132,25 @@ const ProductCard = ({
         <div className="absolute right-3 top-3 flex flex-col gap-2">
           {showWishlist && (
             <button className="w-10 h-10 flex items-center justify-center">
-              <Image src="/images/icons/add to wishlist.svg" alt="Wishlist" width={40} height={40} />
+              <Image
+                src="/images/icons/add to wishlist.svg"
+                alt="Wishlist"
+                width={40}
+                height={40}
+              />
             </button>
           )}
           {showQuickView && (
             <button className="w-10 h-10 flex items-center justify-center">
               <div className="relative w-[46px] h-[46px]">
-  <Image
-    src="/images/icons/gray quick view.svg"
-    alt="Quick view"
-    fill
-    className="object-contain"
-  />
-</div>
+                <Image
+                  src="/images/icons/gray quick view.svg"
+                  alt="Quick view"
+                  fill
+                  sizes="46px"
+                  className="object-contain"
+                />
+              </div>
             </button>
           )}
         </div>

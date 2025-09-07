@@ -27,8 +27,22 @@ export default function Breadcrumbs() {
   ];
 
   return (
-    <div className="relative w-full h-[120px]" style={{ background: "linear-gradient(90.02deg, rgba(0,0,0,0.7) 0.03%, rgba(0,0,0,0) 91.31%)" }}>
-      <Image src="/images/breadcrumbs.jpg" alt="Background" fill sizes="100vw" className="object-cover -z-10" />
+    <div
+      className="relative w-full h-[120px]"
+      style={{
+        background:
+          "linear-gradient(90.02deg, rgba(0,0,0,0.7) 0.03%, rgba(0,0,0,0) 91.31%)",
+      }}
+    >
+      {/* ✅ Здесь можно оставить next/image, так как это JPG */}
+      <Image
+        src="/images/icons/breadcrumbs.jpg"
+        alt="Background"
+        fill
+        sizes="100vw"
+        className="object-cover -z-10"
+      />
+
       <div className="container mx-auto px-4 h-full flex items-center">
         <div className="flex items-center gap-[12px]">
           {paths.map((item, index) => (
@@ -36,25 +50,45 @@ export default function Breadcrumbs() {
               {item.type === "icon" && (
                 <Link href={item.link} passHref>
                   <div className="cursor-pointer hover:opacity-80 transition-opacity">
-                    <Image src={item.content} alt={item.alt} width={24} height={24} style={{ width: "24px", height: "auto" }} />
+                    {/* ✅ SVG рендерим через обычный <img> */}
+                    <img
+                      src={item.content}
+                      alt={item.alt}
+                      width={24}
+                      height={24}
+                      style={{ width: "24px", height: "auto" }}
+                    />
                   </div>
                 </Link>
               )}
 
-              {item.type === "text" && (
-                item.link ? (
+              {item.type === "text" &&
+                (item.link ? (
                   <Link href={item.link} passHref>
-                    <span className={`text-[16px] font-poppins ${item.content === categoryName ? "text-[#00B207]" : "text-[#999999]"} cursor-pointer hover:opacity-80 transition-opacity`}>
+                    <span
+                      className={`text-[16px] font-poppins ${
+                        item.content === categoryName
+                          ? "text-[#00B207]"
+                          : "text-[#999999]"
+                      } cursor-pointer hover:opacity-80 transition-opacity`}
+                    >
                       {item.content}
                     </span>
                   </Link>
                 ) : (
-                  <span className="text-[16px] font-poppins text-[#00B207]">{item.content}</span>
-                )
-              )}
+                  <span className="text-[16px] font-poppins text-[#00B207]">
+                    {item.content}
+                  </span>
+                ))}
 
               {index < paths.length - 1 && (
-                <Image src="/images/icons/vectorRight.svg" alt="separator" width={8} height={4} style={{ width: "8px", height: "auto" }} />
+                // ✅ разделитель-стрелка тоже SVG → делаем <img>
+                <img
+  src="/images/icons/vectorRight.svg"
+  alt="separator"
+  width={8}
+  height={8}   // квадрат, а браузер сам пропорции подтянет
+/>
               )}
             </div>
           ))}

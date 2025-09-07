@@ -8,11 +8,18 @@ const nextConfig = {
           port: "3001",
           pathname: "/uploads/**",
         },
+        {
+          protocol: "https",
+          hostname: "example.com",
+          port: "",
+          pathname: "/**",
+        },
       ],
     },
   };
   
   export default nextConfig;
+  
   
   
   

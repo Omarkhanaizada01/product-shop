@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
-import Tag from "@/components/ui/Tag";
+import Tag from "./Tag";
 
 const BigProductCard = ({
   title = "Chinese cabbage",

@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { fetchCategories } from "@/src/services/categories"; // проверь путь
-import SectionHeading from "./SectionHeading";
+import SectionHeading from "./ui/SectionHeading";
 
 export default function CategoriesList() {
   const router = useRouter();
