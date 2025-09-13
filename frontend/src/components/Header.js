@@ -1,7 +1,8 @@
 "use client";
 import { FiMapPin, FiChevronDown, FiCheck, FiHeart, FiShoppingBag, FiSearch, FiMenu, FiX } from "react-icons/fi";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Image from "next/image";
+import { AuthContext } from "../context/AuthContext";
 
 export default function Header() {
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
@@ -9,6 +10,8 @@ export default function Header() {
   const [selectedLanguage, setSelectedLanguage] = useState("Eng");
   const [selectedCurrency, setSelectedCurrency] = useState("USD");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const { user, logout } = useContext(AuthContext);
 
   const languages = [
     { code: "Eng", name: "English" },
@@ -102,11 +105,24 @@ export default function Header() {
             )}
           </div>
 
-          {/* Auth Links */}
-          <div className="flex items-center gap-2">
-            <a href="/login" className="font-semibold hover:underline">Sign In</a>
-            <span className="text-gray-400">/</span>
-            <a href="/register" className="font-semibold hover:underline">Sign Up</a>
+           {/* Auth Links */}
+           <div className="flex items-center gap-2">
+            {!user ? (
+              <>
+                <a href="/login" className="font-semibold hover:underline">Sign In</a>
+                <span className="text-gray-400">/</span>
+                <a href="/register" className="font-semibold hover:underline">Sign Up</a>
+              </>
+            ) : (
+              <>
+                <span className="font-semibold">Hello, {user.name}</span>
+                {user.role === "ADMIN" && (
+                  <Link href="/admin" className="ml-4 font-semibold text-green-600 hover:underline">
+                    Admin Panel
+                  </Link>
+                )}
+              </>
+            )}
           </div>
         </div>
       </div>
