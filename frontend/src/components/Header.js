@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { FiMapPin, FiChevronDown, FiCheck, FiHeart, FiShoppingBag, FiSearch, FiMenu, FiX } from "react-icons/fi";
 import { useState, useEffect, useContext } from "react";
 import Image from "next/image";
