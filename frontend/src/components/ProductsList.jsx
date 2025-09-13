@@ -26,6 +26,10 @@ export default function ProductsList() {
   if (loading) return <p>Загрузка...</p>;
   if (!products.length) return <p className="text-gray-500">Нет товаров в этой категории.</p>;
 
+  // ✅ Определяем базовый URL API (локально или Render)
+  const baseUrl =
+    process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+
   return (
     <div className="flex-1">
       <h2 className="text-xl font-semibold mb-4 font-poppins">
@@ -38,7 +42,7 @@ export default function ProductsList() {
           const imageUrl = p.image
             ? p.image.startsWith("http")
               ? p.image
-              : `http://localhost:3001${p.image}`
+              : `${baseUrl}${p.image}` // 🔥 универсально работает и локально, и на Render
             : "/images/placeholder.png";
 
           return (

@@ -27,30 +27,27 @@ export default function Breadcrumbs() {
   ];
 
   return (
-    <div
-      className="relative w-full h-[120px]"
-      style={{
-        background:
-          "linear-gradient(90.02deg, rgba(0,0,0,0.7) 0.03%, rgba(0,0,0,0) 91.31%)",
-      }}
-    >
-      {/* ✅ Здесь можно оставить next/image, так как это JPG */}
+    <div className="relative w-full h-[120px]">
+      {/* ✅ Фоновое изображение */}
       <Image
         src="/images/icons/breadcrumbs.jpg"
         alt="Background"
         fill
         sizes="100vw"
-        className="object-cover -z-10"
+        className="object-cover"
       />
 
-      <div className="container mx-auto px-4 h-full flex items-center">
+      {/* ✅ затемнение поверх картинки */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent" />
+
+      {/* ✅ Контент поверх */}
+      <div className="relative container mx-auto px-4 h-full flex items-center">
         <div className="flex items-center gap-[12px]">
           {paths.map((item, index) => (
             <div key={item.id} className="flex items-center gap-[12px]">
               {item.type === "icon" && (
                 <Link href={item.link} passHref>
                   <div className="cursor-pointer hover:opacity-80 transition-opacity">
-                    {/* ✅ SVG рендерим через обычный <img> */}
                     <img
                       src={item.content}
                       alt={item.alt}
@@ -69,7 +66,7 @@ export default function Breadcrumbs() {
                       className={`text-[16px] font-poppins ${
                         item.content === categoryName
                           ? "text-[#00B207]"
-                          : "text-[#999999]"
+                          : "text-white"
                       } cursor-pointer hover:opacity-80 transition-opacity`}
                     >
                       {item.content}
@@ -82,13 +79,12 @@ export default function Breadcrumbs() {
                 ))}
 
               {index < paths.length - 1 && (
-                // ✅ разделитель-стрелка тоже SVG → делаем <img>
                 <img
-  src="/images/icons/vectorRight.svg"
-  alt="separator"
-  width={8}
-  height={8}   // квадрат, а браузер сам пропорции подтянет
-/>
+                  src="/images/icons/vectorRight.svg"
+                  alt="separator"
+                  width={8}
+                  height={8}
+                />
               )}
             </div>
           ))}
