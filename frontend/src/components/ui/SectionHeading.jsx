@@ -9,14 +9,14 @@ export default function SectionHeading({ title = "All Categories", showIcon = tr
 
       {showIcon && (
         <div className="relative">
-          <Image
-            src="/images/icons/ChevronDown.png"
-            alt="Dropdown"
-            width={12}   // ✅ оставляем только width/height
-            height={6}
-            className="rotate-180" // ✅ Tailwind вместо inline-style
-          />
-        </div>
+        <Image
+          src="/images/icons/ChevronDown.png"
+          alt="Dropdown"
+          width={12}
+          height={6}
+          className="rotate-180 w-auto h-auto" // ✅ сохраняем пропорции
+        />
+      </div>
       )}
     </div>
   );

@@ -37,7 +37,7 @@ export default function ProductsList() {
       </h2>
 
       {/* 5 колонок, расстояние 24px */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
         {products.map((p) => {
           const imageUrl = p.image
             ? p.image.startsWith("http")

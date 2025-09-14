@@ -30,12 +30,12 @@ export default function ShopTopBar() {
             Latest
           </span>
           <Image 
-            src="/ChevronDown.png" 
-            alt="Dropdown"
-            width={14}
-            height={14}
-            style={{ transform: 'rotate(-0deg)' }}
-          />
+  src="/images/icons/ChevronDown.png" 
+  alt="Dropdown"
+  width={14}
+  height={14}
+  className="dropdown-icon"
+/>
         </div>
       </div>
 
