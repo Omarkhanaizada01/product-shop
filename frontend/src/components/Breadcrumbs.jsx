@@ -27,8 +27,7 @@ export default function Breadcrumbs() {
   ];
 
   return (
-    <div className="relative w-full h-[120px]">
-      {/* ✅ Фоновое изображение */}
+    <div className="relative w-full h-[80px] md:h-[100px] lg:h-[120px]">
       <Image
         src="/images/icons/breadcrumbs.jpg"
         alt="Background"
@@ -37,23 +36,21 @@ export default function Breadcrumbs() {
         className="object-cover"
       />
 
-      {/* ✅ затемнение поверх картинки */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent" />
 
-      {/* ✅ Контент поверх */}
       <div className="relative container mx-auto px-4 h-full flex items-center">
-        <div className="flex items-center gap-[12px]">
+        <div className="flex items-center gap-2 md:gap-3">
           {paths.map((item, index) => (
-            <div key={item.id} className="flex items-center gap-[12px]">
+            <div key={item.id} className="flex items-center gap-2 md:gap-3">
               {item.type === "icon" && (
                 <Link href={item.link} passHref>
                   <div className="cursor-pointer hover:opacity-80 transition-opacity">
                     <img
                       src={item.content}
                       alt={item.alt}
-                      width={24}
-                      height={24}
-                      style={{ width: "24px", height: "auto" }}
+                      width={20}
+                      height={20}
+                      className="w-5 h-5 md:w-6 md:h-6"
                     />
                   </div>
                 </Link>
@@ -63,7 +60,7 @@ export default function Breadcrumbs() {
                 (item.link ? (
                   <Link href={item.link} passHref>
                     <span
-                      className={`text-[16px] font-poppins ${
+                      className={`text-sm md:text-base font-poppins ${
                         item.content === categoryName
                           ? "text-[#00B207]"
                           : "text-white"
@@ -73,7 +70,7 @@ export default function Breadcrumbs() {
                     </span>
                   </Link>
                 ) : (
-                  <span className="text-[16px] font-poppins text-[#00B207]">
+                  <span className="text-sm md:text-base font-poppins text-[#00B207]">
                     {item.content}
                   </span>
                 ))}
@@ -82,8 +79,9 @@ export default function Breadcrumbs() {
                 <img
                   src="/images/icons/vectorRight.svg"
                   alt="separator"
-                  width={8}
-                  height={8}
+                  width={6}
+                  height={6}
+                  className="w-4 h-4 md:w-5 md:h-5"
                 />
               )}
             </div>

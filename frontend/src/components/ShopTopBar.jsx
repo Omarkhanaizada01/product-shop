@@ -1,49 +1,50 @@
-// src/app/(main)/shop/ShopFilters/ShopTopBar.js
-import Image from 'next/image';
-import Link from 'next/link';
+"use client";
+import { useState } from "react";
+import Image from "next/image";
 
-export default function ShopTopBar() {
+export default function ShopTopBar({ onSortChange, resultsCount, onFilterToggle }) {
+  const [sortOption, setSortOption] = useState("latest");
+
+  const handleSortChange = (option) => {
+    setSortOption(option);
+    onSortChange(option);
+  };
+
   return (
-    <div className="w-[1317px] h-[45px] flex items-center relative">
-      {/* Кнопка Filter */}
-      <button className="absolute left-0 w-[131px] h-[45px] bg-[#00B207] rounded-[43px] flex items-center justify-center px-8 py-[14px] gap-[12px]">
-        <span className="text-white font-poppins font-semibold text-[14px] leading-[120%]">
+    <div className="w-full h-auto md:h-[45px] flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-0">
+      {/* Кнопка Filter (видна на всех устройствах) */}
+      <button 
+        className="w-full md:w-[131px] h-[45px] bg-[#00B207] rounded-[43px] flex items-center justify-center gap-3 md:gap-[12px] md:mr-[205px]"
+        onClick={onFilterToggle}
+      >
+        <span className="text-white font-poppins font-semibold text-sm md:text-[14px]">
           Filter
         </span>
-        <Image 
-          src="/images/icons/filter.svg" 
-          alt="Filter"
-          width={20}
-          height={17}
-          style={{ border: '0px solid #FFFFFF' }}
-        />
+        <Image src="/images/icons/filter.svg" alt="Filter" width={20} height={17} />
       </button>
 
-      {/* Блок Sort By */}
-      <div className="absolute left-[336px] flex items-center gap-[8px]">
-        <span className="text-[#808080] font-poppins text-[14px] leading-[150%]">
-          Sort by:
-        </span>
-        
-        <div className="w-[166px] h-[41px] border border-[#E5E5E5] rounded-[4px] px-4 py-[10px] flex items-center justify-between">
-          <span className="text-[#4D4D4D] font-poppins text-[14px] leading-[150%]">
-            Latest
-          </span>
-          <Image 
-  src="/images/icons/ChevronDown.png" 
-  alt="Dropdown"
-  width={14}
-  height={14}
-  className="dropdown-icon"
-/>
+      <div className="w-full flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-0">
+        {/* Sort By */}
+        <div className="flex items-center gap-2 md:gap-[8px]">
+          <span className="text-[#808080] font-poppins text-sm md:text-[14px]">Sort by:</span>
+          
+          <select
+            value={sortOption}
+            onChange={(e) => handleSortChange(e.target.value)}
+            className="border border-[#E5E5E5] rounded-[4px] px-3 py-2 md:px-4 md:py-[8px] text-[#4D4D4D] text-sm md:text-base"
+          >
+            <option value="latest">Latest</option>
+            <option value="price_asc">Price: Low to High</option>
+            <option value="price_desc">Price: High to Low</option>
+          </select>
         </div>
-      </div>
 
-      {/* Блок с количеством результатов (теперь в одной строке) */}
-      <div className="absolute left-[1125px] h-[24px] whitespace-nowrap">
-        <span className="text-[#4D4D4D] font-poppins text-[16px] leading-[150%]">
-          <span className="font-semibold leading-[120%]">52</span> Results Found
-        </span>
+        {/* Results */}
+        <div>
+          <span className="text-[#4D4D4D] font-poppins text-sm md:text-[16px]">
+            <span className="font-semibold">{resultsCount}</span> Results Found
+          </span>
+        </div>
       </div>
     </div>
   );
