@@ -63,7 +63,7 @@ export default function AboutPage() {
                 </div>
 
                 {/* Основное изображение */}
-                <div className="absolute left-8 xl:left-[145px] top-0 w-[70%] xl:w-[745px] h-full">
+                <div className="absolute left-8 xl:left-[85px] top-0 w-[70%] xl:w-[745px] h-full">
                   <Image
                     src="/images/aboutUs/about2.png"
                     alt="About Us"
