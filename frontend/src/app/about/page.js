@@ -1,5 +1,5 @@
-// src/app/about/page.tsx
 "use client";
+
 import Image from "next/image";
 import Breadcrumbs from "@/src/components/Breadcrumbs";
 import FeaturesSection from "@/src/components/sections/FeaturesSection";
@@ -21,10 +21,11 @@ export default function AboutPage() {
               100% Trusted Organic Food Store
             </h1>
             <p className="text-sm sm:text-base md:text-lg lg:text-[18px] font-poppins text-[#666666] leading-[150%]">
-              Morbi porttitor ligula in nunc varius sagittis. Proin dui nisi, laoreet ut tempor ac, 
-              cursus vitae eros. Cras quis ultricies elit. Proin ac lectus arcu. Maecenas aliquet 
-              vel tellus at accumsan. Donec a eros non massa vulputate ornare. Vivamus ornare 
-              commodo ante, at commodo felis congue vitae.
+              Morbi porttitor ligula in nunc varius sagittis. Proin dui nisi,
+              laoreet ut tempor ac, cursus vitae eros. Cras quis ultricies elit.
+              Proin ac lectus arcu. Maecenas aliquet vel tellus at accumsan.
+              Donec a eros non massa vulputate ornare. Vivamus ornare commodo
+              ante, at commodo felis congue vitae.
             </p>
           </div>
 
@@ -60,7 +61,7 @@ export default function AboutPage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-white via-white/70 to-transparent" />
                 </div>
-                
+
                 {/* Основное изображение */}
                 <div className="absolute left-8 xl:left-[145px] top-0 w-[70%] xl:w-[745px] h-full">
                   <Image
@@ -91,15 +92,17 @@ export default function AboutPage() {
                 About Our Store
               </h2>
               <p className="text-sm sm:text-base md:text-lg lg:text-[18px] font-poppins text-[#666666] leading-[150%] mb-6 sm:mb-8">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor 
-                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
               </p>
-              
+
               <p className="text-sm sm:text-base md:text-lg lg:text-[18px] font-poppins text-[#666666] leading-[150%] mb-8 sm:mb-10">
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
-                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
-                culpa qui officia deserunt mollit anim id est laborum.
+                Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                cupidatat non proident, sunt in culpa qui officia deserunt
+                mollit anim id est laborum.
               </p>
 
               {/* Features Section */}

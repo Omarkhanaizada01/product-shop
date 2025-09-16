@@ -1,11 +1,12 @@
 "use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { fetchCategoryById } from "@/src/services/categories";
 
-export default function Breadcrumbs() {
+function BreadcrumbsInner({ currentPage }) {
   const searchParams = useSearchParams();
   const categoryId = searchParams.get("categoryId");
   const [categoryName, setCategoryName] = useState(null);
@@ -21,10 +22,19 @@ export default function Breadcrumbs() {
   }, [categoryId]);
 
   const paths = [
-    { id: "home", type: "icon", content: "/images/icons/home.svg", link: "/", alt: "Home" },
+    {
+      id: "home",
+      type: "icon",
+      content: "/images/icons/home.svg",
+      link: "/",
+      alt: "Home",
+    },
     { id: "shop", type: "text", content: "Shop", link: "/shop" },
-    { id: "current", type: "text", content: categoryName || "All Products" }
-    
+    {
+      id: "current",
+      type: "text",
+      content: categoryName || currentPage || "All Products",
+    },
   ];
 
   return (
@@ -90,5 +100,13 @@ export default function Breadcrumbs() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function Breadcrumbs({ currentPage }) {
+  return (
+    <Suspense fallback={<div className="h-[80px] bg-gray-200 animate-pulse" />}>
+      <BreadcrumbsInner currentPage={currentPage} />
+    </Suspense>
   );
 }
