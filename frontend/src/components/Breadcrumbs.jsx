@@ -24,6 +24,7 @@ export default function Breadcrumbs() {
     { id: "home", type: "icon", content: "/images/icons/home.svg", link: "/", alt: "Home" },
     { id: "shop", type: "text", content: "Shop", link: "/shop" },
     { id: "current", type: "text", content: categoryName || "All Products" }
+    
   ];
 
   return (

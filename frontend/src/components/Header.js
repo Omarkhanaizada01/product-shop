@@ -49,7 +49,7 @@ export default function Header() {
     { id: "shop", name: "Shop", link: "/shop" },
     { id: "pages", name: "Pages", link: "/" },
     { id: "blog", name: "Blog", link: "/" },
-    { id: "aboutUs", name: "About Us", link: "/" },
+    { id: "about", name: "About", link: "about" },
     { id: "contactUs", name: "Contact Us", link: "/" },
   ];
 
@@ -176,9 +176,12 @@ export default function Header() {
           </button>
         </div>
 
-        {/* Icons + Burger */}
-        <div className="flex items-center gap-4">
-          <FiHeart className="w-[28px] h-[28px] text-gray-600 hover:text-green-600 transition-colors hidden sm:block" />
+         {/* Icons + Burger */}
+         <div className="flex items-center gap-4">
+          {/* 👉 Сделали Heart ссылкой на wishlist */}
+          <Link href="/wishlist">
+            <FiHeart className="w-[28px] h-[28px] text-gray-600 hover:text-green-600 transition-colors hidden sm:block cursor-pointer" />
+          </Link>
 
           {/* Корзина */}
           <div className="relative">
@@ -206,6 +209,7 @@ export default function Header() {
           </button>
         </div>
       </div>
+      
 
       {/* Bottom Nav */}
       <nav className="bg-[#333333]">

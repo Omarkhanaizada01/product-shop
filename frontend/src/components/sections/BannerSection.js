@@ -6,7 +6,7 @@ const BannerSection = () => {
   const banners = [
     {
       id: 1,
-      imageSrc: '/images/banners/banner 1.svg',
+      imageSrc: '/images/banners/Banner 1.svg',
       topText: 'Best Deals',
       mainTitle: 'Sale of the Month',
       buttonText: 'Shop now',
@@ -19,14 +19,14 @@ const BannerSection = () => {
     },
     {
       id: 2,
-      imageSrc: '/images/banners/banner 2.svg',
+      imageSrc: '/images/banners/Banner 2.svg',
       topText: '85% Fat free',
       mainTitle: 'Low-Fat Meat',
       price: 'Started at $79.99',
     },
     {
       id: 3,
-      imageSrc: '/images/banners/banner 3.svg',
+      imageSrc: '/images/banners/Banner 3.svg',
       topText: 'Summer Sale',
       mainTitle: '100% Fresh Fruit',
       discount: 64,
