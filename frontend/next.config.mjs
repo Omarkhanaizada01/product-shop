@@ -6,7 +6,7 @@ const nextConfig = {
         protocol: "http",
         hostname: "localhost",
         port: "3001",
-        pathname: "/uploads/**",
+        pathname: "/**",
       },
       {
         protocol: "https",
@@ -16,18 +16,18 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "res.cloudinary.com", // ✅ Cloudinary
+        hostname: "res.cloudinary.com",
         port: "",
         pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "diploma-backend-dgd3.onrender.com", // ✅ твой бэкенд
+        port: "",
+        pathname: "/**", // разрешаем все пути
       },
     ],
   },
 };
 
 export default nextConfig;
-
-  
-  
-  
-  
-

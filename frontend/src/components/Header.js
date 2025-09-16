@@ -4,6 +4,7 @@ import { FiMapPin, FiChevronDown, FiCheck, FiHeart, FiShoppingBag, FiSearch, FiM
 import { useState, useEffect, useContext } from "react";
 import Image from "next/image";
 import { AuthContext } from "../context/AuthContext";
+import ShoppingCartModal from "./modals/ShoppingCartModal";// 👈 добавили импорт
 
 export default function Header() {
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
@@ -11,8 +12,25 @@ export default function Header() {
   const [selectedLanguage, setSelectedLanguage] = useState("Eng");
   const [selectedCurrency, setSelectedCurrency] = useState("USD");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false); // 👈 состояние корзины
 
-  const { user, logout } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
+
+  // Тестовые товары (позже заменишь на реальные данные)
+  const cartItems = [
+    {
+      name: "Fresh Indian Orange",
+      image: "/images/products/orange.jpg",
+      price: 12.0,
+      quantity: 2,
+    },
+    {
+      name: "Organic Apple",
+      image: "/images/products/apple.jpg",
+      price: 8.5,
+      quantity: 1,
+    },
+  ];
 
   const languages = [
     { code: "Eng", name: "English" },
@@ -106,8 +124,8 @@ export default function Header() {
             )}
           </div>
 
-           {/* Auth Links */}
-           <div className="flex items-center gap-2">
+          {/* Auth Links */}
+          <div className="flex items-center gap-2">
             {!user ? (
               <>
                 <a href="/login" className="font-semibold hover:underline">Sign In</a>
@@ -161,17 +179,22 @@ export default function Header() {
         {/* Icons + Burger */}
         <div className="flex items-center gap-4">
           <FiHeart className="w-[28px] h-[28px] text-gray-600 hover:text-green-600 transition-colors hidden sm:block" />
-          <div className="hidden sm:flex items-center gap-3">
-            <div className="relative">
+
+          {/* Корзина */}
+          <div className="relative">
+            <button onClick={() => setIsCartOpen(true)}>
               <FiShoppingBag className="w-[30px] h-[30px] text-gray-600 hover:text-green-600 transition-colors" />
+            </button>
+            {cartItems.length > 0 && (
               <span className="absolute -top-1 -right-1 bg-green-600 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
-                2
+                {cartItems.length}
               </span>
-            </div>
-            <div className="hidden md:flex flex-col">
-              <span className="text-[11px] text-[#4D4D4D]">Shopping cart:</span>
-              <span className="text-[14px] font-medium text-[#1A1A1A]">$57.00</span>
-            </div>
+            )}
+          </div>
+
+          <div className="hidden md:flex flex-col">
+            <span className="text-[11px] text-[#4D4D4D]">Shopping cart:</span>
+            <span className="text-[14px] font-medium text-[#1A1A1A]">${cartItems.reduce((s, i) => s + i.price * i.quantity, 0).toFixed(2)}</span>
           </div>
 
           {/* Burger */}
@@ -185,35 +208,32 @@ export default function Header() {
       </div>
 
       {/* Bottom Nav */}
-      {/* Bottom Nav */}
       <nav className="bg-[#333333]">
-  <div className="container mx-auto h-[60px] hidden lg:flex justify-between items-center px-4">
-    <div className="flex items-center gap-8">
-      {nav.map((item) => (
-        <a 
-          key={item.id} 
-          href={item.link} 
-          className="flex items-center gap-1 text-[#999999] hover:text-white transition-colors text-[14px] font-medium"
-        >
-          {item.name}
-          <Image 
-            src="/images/icons/ChevronDown.png"
-            alt="Arrow" 
-            width={16}
-            height={16} 
-            
-          />
-        </a>
-      ))}
-    </div>
-    <div className="flex items-center gap-2">
-      <Image src="/images/icons/PhoneCall.png" alt="Phone" width={28} height={28}/>
-      <span className="text-[#999999] hover:text-white transition-colors text-[14px] font-medium">
-        +123 (456) 7890
-      </span>
-    </div>
-  </div>
-
+        <div className="container mx-auto h-[60px] hidden lg:flex justify-between items-center px-4">
+          <div className="flex items-center gap-8">
+            {nav.map((item) => (
+              <a 
+                key={item.id} 
+                href={item.link} 
+                className="flex items-center gap-1 text-[#999999] hover:text-white transition-colors text-[14px] font-medium"
+              >
+                {item.name}
+                <Image 
+                  src="/images/icons/ChevronDown.png"
+                  alt="Arrow" 
+                  width={16}
+                  height={16} 
+                />
+              </a>
+            ))}
+          </div>
+          <div className="flex items-center gap-2">
+            <Image src="/images/icons/PhoneCall.png" alt="Phone" width={28} height={28}/>
+            <span className="text-[#999999] hover:text-white transition-colors text-[14px] font-medium">
+              +123 (456) 7890
+            </span>
+          </div>
+        </div>
 
         {/* Mobile Nav + Search */}
         {isMenuOpen && (
@@ -243,6 +263,13 @@ export default function Header() {
           </div>
         )}
       </nav>
+
+      {/* 👉 Модалка корзины */}
+      <ShoppingCartModal 
+        isOpen={isCartOpen} 
+        onClose={() => setIsCartOpen(false)} 
+        cartItems={cartItems} 
+      />
     </header>
   );
 }
