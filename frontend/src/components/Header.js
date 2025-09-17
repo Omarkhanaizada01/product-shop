@@ -50,7 +50,7 @@ export default function Header() {
     { id: "pages", name: "Pages", link: "/" },
     { id: "blog", name: "Blog", link: "/" },
     { id: "about", name: "About", link: "about" },
-    { id: "contactUs", name: "Contact Us", link: "/" },
+    { id: "contact", name: "Contact", link: "contact" },
   ];
 
   useEffect(() => {
