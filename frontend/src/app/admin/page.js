@@ -1,31 +1,37 @@
 "use client";
-import { useEffect, useState } from "react";
-import API from "@/src/utils/api";
+
+import AdminProducts from "./Products";
+import AdminDashboard from "./Dashboard";
 
 export default function AdminPage() {
-  const [products, setProducts] = useState([]);
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    API.get("/api/products")
-      .then((res) => setProducts(res.data))
-      .catch((err) => setError("Ошибка при загрузке продуктов"));
-  }, []);
-
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Админ-панель</h1>
+    <div className="min-h-screen bg-gradient-to-b from-green-50 to-white p-8">
+      {/* Заголовок */}
+      <header className="mb-8 text-center">
+        <h1 className="text-4xl font-extrabold text-green-700 drop-shadow-md">
+          Панель администратора
+        </h1>
+        <p className="text-gray-600 mt-2">Управляйте магазином легко и удобно</p>
+      </header>
 
-      {error && <p className="text-red-500">{error}</p>}
+      {/* Основная часть */}
+      <main className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Блок продуктов */}
+        <section className="lg:col-span-2 bg-white rounded-2xl shadow-lg p-6 border border-green-100 hover:shadow-xl transition">
+          <h2 className="text-xl font-semibold text-green-600 mb-4">
+            Управление продуктами
+          </h2>
+          <AdminProducts />
+        </section>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {products.map((product) => (
-          <div key={product.id} className="border p-4 rounded shadow">
-            <h2 className="font-semibold">{product.title}</h2>
-            <p>{product.price} ₸</p>
-          </div>
-        ))}
-      </div>
+        {/* Блок навигации админки */}
+        <section className="bg-white rounded-2xl shadow-lg p-6 border border-green-100 hover:shadow-xl transition">
+          <h2 className="text-xl font-semibold text-green-600 mb-4">
+            Навигация
+          </h2>
+          <AdminDashboard />
+        </section>
+      </main>
     </div>
   );
 }

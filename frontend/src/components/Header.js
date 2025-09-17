@@ -14,7 +14,7 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false); // 👈 состояние корзины
 
-  const { user } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
 
   // Тестовые товары (позже заменишь на реальные данные)
   const cartItems = [
@@ -140,6 +140,13 @@ export default function Header() {
                     Admin Panel
                   </Link>
                 )}
+                {/* 👇 кнопка выхода */}
+                <button
+                  onClick={logout}
+                  className="ml-4 px-3 py-1 rounded bg-green-600 text-white hover:bg-green-700"
+                >
+                  Logout
+                </button>
               </>
             )}
           </div>
