@@ -6,24 +6,25 @@ import ProductQuickViewModal from "../modals/ProductQuickViewModal";
 const ProductCard = ({
   size = "5n",
   product = {
-    id: 1, // ✅ Добавляем id для ключа
+    id: 1,
     name: "Green Apple",
     price: "$14.99",
     oldPrice: "$24.99",
     image: "/images/products/greenApple.svg",
-    description: "Fresh green apples from local farms", // ✅ Добавляем описание
-    inStock: true, // ✅ Добавляем статус
-    rating: 4.5, // ✅ Добавляем рейтинг
-    sku: "APL-001" // ✅ Добавляем SKU
+    description: "Fresh green apples from local farms",
+    inStock: true,
+    rating: 4.5,
+    sku: "APL-001",
+    discount: 50, // ✅ добавляем скидку прямо в объект продукта
   },
   tags = [],
-  salePercent = 50,
+  salePercent = product.discount || 0, // ✅ если скидка есть, используем её
   showWishlist = true,
   showQuickView = true,
   withHoverBorder = false,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false); // ✅ Состояние для модального окна
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Конфиги размеров
   const sizesConfig = {
@@ -49,6 +50,7 @@ const ProductCard = ({
 
   const currentSize = sizesConfig[size];
 
+  // Конфиг тегов
   const tagConfig = {
     sale: { bg: "bg-[#EA4B48]", text: `${salePercent}% Sale`, width: "w-[72px]" },
     new: { bg: "bg-[#FF8A00]", text: "New", width: "w-[47px]" },
@@ -56,7 +58,6 @@ const ProductCard = ({
     out: { bg: "bg-[#1A1A1A]", text: "Out of stock", width: "w-[101px]" },
   };
 
-  // ✅ Функция открытия модального окна
   const handleQuickView = () => {
     setIsModalOpen(true);
   };
@@ -70,9 +71,20 @@ const ProductCard = ({
         onMouseLeave={() => setIsHovered(false)}
       >
         {/* Теги */}
-        {tags.length > 0 && (
-          <div className="absolute left-2 top-2 z-10 flex flex-col gap-1">
-            {tags.map((tagType) => (
+        <div className="absolute left-2 top-2 z-10 flex flex-col gap-1">
+          {/* Показываем sale только если скидка > 0 */}
+          {salePercent > 0 && (
+            <div
+              className={`${tagConfig.sale.bg} ${tagConfig.sale.width} h-[27px] rounded px-2 flex items-center justify-center`}
+            >
+              <span className="text-white text-xs font-medium">{tagConfig.sale.text}</span>
+            </div>
+          )}
+
+          {/* Остальные теги */}
+          {tags
+            .filter((tagType) => tagType !== "sale") // исключаем sale, чтобы не дублировался
+            .map((tagType) => (
               <div
                 key={tagType}
                 className={`${tagConfig[tagType].bg} ${tagConfig[tagType].width} h-[27px] rounded px-2 flex items-center justify-center`}
@@ -80,8 +92,7 @@ const ProductCard = ({
                 <span className="text-white text-xs font-medium">{tagConfig[tagType].text}</span>
               </div>
             ))}
-          </div>
-        )}
+        </div>
 
         {/* Изображение */}
         <div className={currentSize.image}>
@@ -156,7 +167,7 @@ const ProductCard = ({
             {showQuickView && (
               <button 
                 className="w-10 h-10 flex items-center justify-center"
-                onClick={handleQuickView} // ✅ Добавляем обработчик клика
+                onClick={handleQuickView}
               >
                 <div className="relative w-[46px] h-[46px]">
                   <Image
